@@ -6,14 +6,101 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
-    <title>Remove Background</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>ClearCut — Free Background Remover That Runs in Your Browser</title>
+    <meta
+      name="description"
+      content="Remove image backgrounds instantly without uploads. ClearCut runs entirely in your browser—your photos never leave your device. Free, private, no signup."
+    />
+    <meta name="author" content="JC Dang" />
+    <link rel="canonical" href="https://jcdang.com/clear-cut/" />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <!-- Open Graph (Facebook, LinkedIn, Slack, Discord, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcdang.com/clear-cut/" />
+    <meta property="og:site_name" content="ClearCut" />
+    <meta
+      property="og:title"
+      content="ClearCut — Free Background Remover (100% Private)"
+    />
+    <meta
+      property="og:description"
+      content="Remove image backgrounds instantly. Runs entirely in your browser—your photos never leave your device."
+    />
+    <meta
+      property="og:image"
+      content="https://jcdang.com/clear-cut/opengraph.jpg"
+    />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta
+      property="og:image:alt"
+      content="ClearCut — browser-based background remover"
+    />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://jcdang.com/clear-cut/" />
+    <meta
+      name="twitter:title"
+      content="ClearCut — Free Background Remover (100% Private)"
+    />
+    <meta
+      name="twitter:description"
+      content="Remove image backgrounds instantly. Runs entirely in your browser—your photos never leave your device."
+    />
+    <meta
+      name="twitter:image"
+      content="https://jcdang.com/clear-cut/opengraph.jpg"
+    />
+
+    <!-- Structured data for rich Google results -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ClearCut",
+        "alternateName": "ClearCut Background Remover",
+        "url": "https://jcdang.com/clear-cut/",
+        "description": "Free, privacy-first background remover that runs entirely in your browser. No uploads, no signup, no data collection.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any (browser-based)",
+        "browserRequirements": "Modern browser with WebAssembly support",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "screenshot": "https://jcdang.com/clear-cut/opengraph.jpg",
+        "featureList": [
+          "Remove backgrounds from JPEG, PNG, and WEBP images",
+          "Batch processing of multiple images",
+          "Composite onto solid colors or custom background images",
+          "Side-by-side comparison slider",
+          "100% client-side processing — no uploads",
+          "No signup required",
+          "Open source"
+        ],
+        "author": {
+          "@type": "Person",
+          "name": "JC Dang",
+          "url": "https://github.com/jcdang"
+        },
+        "codeRepository": "https://github.com/jcdang/clear-cut",
+        "license": "https://opensource.org/licenses/MIT"
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
     <!--
       Cross-origin isolation via service worker, so onnxruntime-web can use
       threaded WASM (SharedArrayBuffer requires COOP/COEP headers that GitHub
@@ -28,7 +115,29 @@
     <script src="./coi-serviceworker.min.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!--
+        Pre-render content for crawlers that don't execute JS. React replaces
+        this on mount. Visible to Googlebot's text-only crawl pass and to
+        accessibility tools when JS is disabled.
+      -->
+      <noscript>
+        <h1>ClearCut — Free Browser-Based Background Remover</h1>
+        <p>
+          Remove image backgrounds instantly without uploads. ClearCut runs
+          entirely in your browser; your photos never leave your device.
+        </p>
+        <p>
+          This app requires JavaScript and WebAssembly support to function.
+          Please enable JavaScript and reload the page.
+        </p>
+        <p>
+          <a href="https://github.com/jcdang/clear-cut"
+            >View source on GitHub</a
+          >
+        </p>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
