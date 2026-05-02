@@ -10,6 +10,7 @@ export default tseslint.config(
       "dist",
       "coverage",
       "node_modules",
+      "public",
       "src/components/ui",
       "src/hooks/use-toast.ts",
       "src/hooks/use-mobile.tsx",

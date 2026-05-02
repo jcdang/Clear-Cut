@@ -14,6 +14,18 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!--
+      Cross-origin isolation via service worker, so onnxruntime-web can use
+      threaded WASM (SharedArrayBuffer requires COOP/COEP headers that GitHub
+      Pages can't set). The SW also rewrites cross-origin responses with
+      CORP=cross-origin so imgly's CDN fetches keep working.
+    -->
+    <script>
+      window.coi = {
+        coepCredentialless: () => false,
+      };
+    </script>
+    <script src="./coi-serviceworker.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
