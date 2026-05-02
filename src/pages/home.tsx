@@ -16,6 +16,7 @@ import {
   ChevronRight,
   Plus,
 } from "lucide-react";
+import { OfflineStatusPill } from "@/components/OfflineStatusPill";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -531,6 +532,7 @@ export default function Home() {
               <Zap className="w-3.5 h-3.5" /> Fast & Free
             </span>
           </div>
+          <OfflineStatusPill />
           <a
             href={GITHUB_URL}
             target="_blank"
@@ -624,7 +626,7 @@ export default function Home() {
                       <img
                         src={displayItem.originalUrl}
                         alt="Processing"
-                        className="w-full h-full object-cover rounded-2xl shadow-sm opacity-50"
+                        className="w-full h-full object-cover rounded-2xl shadow-sm opacity-80"
                       />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-12 h-12 bg-background/80 backdrop-blur rounded-full flex items-center justify-center shadow-sm animate-spin-slow">

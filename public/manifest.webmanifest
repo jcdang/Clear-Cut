@@ -1,0 +1,18 @@
+{
+  "name": "ClearCut — Background Remover",
+  "short_name": "ClearCut",
+  "description": "Free, privacy-first background remover that runs entirely in your browser.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
