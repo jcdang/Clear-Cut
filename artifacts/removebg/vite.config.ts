@@ -29,8 +29,9 @@ if (!basePath) {
 export default defineConfig({
   base: basePath,
   optimizeDeps: {
-    exclude: ["@imgly/background-removal"],
+    exclude: ["@imgly/background-removal", "onnxruntime-web"],
   },
+  assetsInclude: ["**/*.wasm"],
   plugins: [
     react(),
     tailwindcss(),
