@@ -72,14 +72,10 @@ export function CompareSlider({ originalUrl, resultUrl, backgroundStyle, classNa
       </div>
 
       <div 
-        className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_4px_rgba(0,0,0,0.5)] cursor-ew-resize z-10"
-        style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
+        className="absolute top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center cursor-ew-resize z-10"
+        style={{ left: `${position}%`, transform: 'translate(-50%, -50%)' }}
       >
-        <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center pointer-events-none"
-        >
-          <ChevronsLeftRight className="w-4 h-4 text-slate-800" />
-        </div>
+        <ChevronsLeftRight className="w-4 h-4 text-slate-800" />
       </div>
 
       <div className="absolute top-4 left-4 bg-black/50 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-medium opacity-0 transition-opacity pointer-events-none group-hover:opacity-100 z-20">
