@@ -40,14 +40,17 @@ export default function Home() {
       setOriginalUrl(newOriginalUrl);
 
       const blob = await removeBackground(file, {
+        model: "isnet_quint8",
         progress: (key, current, total) => {
           let stageName = key;
           if (key.includes("fetch:model")) stageName = "Downloading AI Model...";
-          if (key.includes("compute:inference")) stageName = "Removing background...";
+          else if (key.includes("fetch:inference")) stageName = "Loading inference engine...";
+          else if (key.includes("compute:inference")) stageName = "Removing background...";
           
+          const pct = total > 0 ? Math.round((current / total) * 100) : 0;
           setStats({
             stage: stageName,
-            progress: Math.round((current / total) * 100) || 0
+            progress: pct
           });
         }
       });
@@ -57,8 +60,9 @@ export default function Home() {
       setAppState("result");
       setCustomBgColor("transparent");
     } catch (error) {
-      console.error("Error removing background:", error);
-      alert("Failed to process image. Please try again.");
+      const msg = error instanceof Error ? error.message : String(error);
+      console.error("Error removing background:", msg, error);
+      alert(`Failed to process image: ${msg || "Unknown error"}. Please try again.`);
       resetState();
     }
   };
