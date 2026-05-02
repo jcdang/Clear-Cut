@@ -13,6 +13,7 @@ type AppState = "upload" | "processing" | "result";
 interface ProcessingStats {
   stage: string;
   progress: number;
+  indeterminate?: boolean;
 }
 
 interface BatchQueueItem {
@@ -140,12 +141,17 @@ export default function Home() {
         model: "isnet_quint8",
         progress: (key, current, total) => {
           let stageName = key;
-          if (key.includes("fetch:model")) stageName = "Downloading AI Model...";
+          let indeterminate = false;
+          if (key.includes("fetch:model")) stageName = "Downloading AI model...";
           else if (key.includes("fetch:inference")) stageName = "Loading inference engine...";
           else if (key.includes("compute:inference")) stageName = "Removing background...";
-          
+          else if (key.includes("compute:decode")) {
+            stageName = "Generating output image...";
+            indeterminate = true;
+          }
+
           const pct = total > 0 ? Math.round((current / total) * 100) : 0;
-          setStats({ stage: stageName, progress: pct });
+          setStats({ stage: stageName, progress: pct, indeterminate });
         }
       });
 
@@ -438,9 +444,15 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground mb-8 min-h-[1.5rem] font-medium">{stats.stage}</p>
                   
                   <div className="w-full space-y-2">
-                    <Progress value={stats.progress} className="h-2.5 w-full bg-accent" />
+                    {stats.indeterminate ? (
+                      <div className="h-2.5 w-full rounded-full bg-accent overflow-hidden">
+                        <div className="h-full w-1/3 bg-primary rounded-full animate-[indeterminate_1.4s_ease-in-out_infinite]" />
+                      </div>
+                    ) : (
+                      <Progress value={stats.progress} className="h-2.5 w-full bg-accent" />
+                    )}
                     <div className="flex justify-between text-xs text-muted-foreground font-mono">
-                      <span>{stats.progress}%</span>
+                      <span>{stats.indeterminate ? "—" : `${stats.progress}%`}</span>
                       <span>100%</span>
                     </div>
                   </div>
